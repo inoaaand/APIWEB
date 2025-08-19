@@ -1,0 +1,31 @@
+
+
+connection.query('SELECT * FROM usuarios', function(error, results, fields) {
+  if (error) throw error;
+  console.log(results);
+});
+
+app.post('/usuarios', (req, res) => {
+  const { nome, sobrenome, email, idade, telefone, endereco, cidade, estado } = req.body;
+
+  if (!nome || !email) {
+    res.status(400).json({ error: 'Nome e email são obrigatórios' });
+    return;
+  }
+
+  const query = `INSERT INTO usuarios (nome, sobrenome, email, idade, telefone, endereco, cidade, estado)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  connection.query(query, [nome, sobrenome, email, idade, telefone, endereco, cidade, estado], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao cadastrar usuário' });
+      return;
+    }
+    res.status(201).json({ id: results.insertId, nome, sobrenome, email, idade, telefone, endereco, cidade, estado });
+  });
+});
+
+app.listen(3000, () => {
+  console.log('Servidor rodando na porta 3000');
+});
