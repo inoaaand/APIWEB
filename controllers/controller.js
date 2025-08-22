@@ -1,4 +1,4 @@
-import bd from "../bd/firebase.js";
+import bd from "./firebase.js";
 import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc } from 'firebase/firestore';
 
 const usersRef = collection(bd, "usuario");
@@ -40,7 +40,7 @@ export const buscarUsuario = async (req, res) => {
     }
 };
 
-// Atualizar usuário por ID
+
 export const atualizarUsuario = async (req, res) => {
     try {
         const { id } = req.params;
@@ -52,7 +52,6 @@ export const atualizarUsuario = async (req, res) => {
         res.sendStatus(500);
     }
 };
-
 
 export const deletarUsuario = async (req, res) => {
     try {
