@@ -1,18 +1,30 @@
-import bd from "../bd/firebase-admin.js";  
-const usersRef = bd.collection("users");
+import bd from "../bd/firebase.js";  
+import {collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc} from 'firebase/firestore';
 
-export const createUser = async (req, res) => {
+const usersRef = collection("usuarios");
+
+export const listarUsuario = async (req, res) => {
     
-    const { nome, sobrenome, email, telefone } = req.body;
-    const novoUsuario = { nome, sobrenome, email, telefone };
-    const docRef = await usersRef.add(novoUsuario);
 
 };
 
-export const getUsers = async (req, res) => {
+export const criarUsuario = async (req, res) => {
  
-    const snapshot = await usersRef.get();
-    const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    res.json(users);
 
 };
+
+export const deletarUsuario = async (req, res) => {
+ 
+
+};
+
+export const atualizarUsuario = async (req, res) => {
+ 
+
+};
+
+export const buscarUsuario = async (req, res) => {
+ 
+
+};
+

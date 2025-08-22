@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { createUser, getUsers } from "../controllers/controller.js";
+import { listarUsuario, criarUsuario, buscarUsuario, deletarUsuario, atualizarUsuario } from "../controllers/controller.js";
 
 const rota = Router();
 
-rota.post("/", createUser);
-rota.get("/", getUsers);
+rota.get("/", listarUsuario);
+rota.post("/", criarUsuario);
+rota.get("/:id", buscarUsuario);
+rota.put("/:id", atualizarUsuario);
+rota.delete("/:id", deletarUsuario);
 
 export default rota;
